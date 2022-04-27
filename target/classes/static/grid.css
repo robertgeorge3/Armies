@@ -1,0 +1,26 @@
+
+.container2{
+
+}
+
+.container {
+  width:1000px;
+  display: grid;
+  grid-template-columns: 1fr 1fr  1fr 1fr  1fr 1fr  1fr 1fr  1fr 1fr  1fr 1fr  1fr 1fr  1fr 1fr  1fr 1fr  1fr 1fr ;
+  color: grey;
+  align: center;
+  font-size: 3rem;
+}
+.cell {
+  height: 50px;
+  width: 50px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: gray;
+  border-radius: 3px;
+  background: gainsboro;
+}
+
+.cell:hover {
+    background-color: rgba(255, 0, 0, 1);
+}

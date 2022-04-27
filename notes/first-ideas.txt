@@ -1,0 +1,18 @@
+Numbers 
+	- armies
+	- randomness involved when attacking
+
+area which you "take"
+
+first to 80 % possession
+
+must have a unit in every piece of land to maintain it. 
+then captured if over-thrown 
+
+
+"towns" exists which if you take the whole thing 
+generate 1 unit every 5 turns
+
+
+build cities which create a unit every turn
+

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <link rel="stylesheet" href="grid.css">
+    <meta char set="UTF-8">
+</head>
+<body>
+<h1></h1>
+</body>
+<div>
+    <form action="setGrid" method="POST">
+        <div class="form-group row">
+            <label for="gridNum" class="col-3 col-form-label">
+                Enter</label>
+            <div class="col-9">
+                <input type="text" name="gridNum"
+                       id="gridNum" class="form-control"/>
+            </div>
+            <style th:text =${incorrectPassword}>
+            </style>
+        </div>
+    </form>
+</div>
+<div id="container2">
+</div>
+<script>
+  var wrapper = document.getElementById("container2");
+  var myHTML = '<div class="container">';
+  for (var i = 0; i <260; i++) {
+    myHTML += '<button class="cell cell-'+(i+1)+'" type="button">'+' </button>';
+  }
+  myHTML += '</div>'
+  wrapper.innerHTML = myHTML
+</script>
+
+<!--<div id="gridColors">-->
+<!--    <style>-->
+<!--    .cell-10{-->
+<!--    background: green;-->
+<!--    }-->
+<!--</style>-->
+
+<!--<script>-->
+<!--      var wrapper = document.getElementById("gridColors");-->
+<!--      var myHtml = '<style>'-->
+<!--      for (var i = 1; i < 21; i++) {-->
+<!--      if (i%2 != 0){-->
+<!--            myHtml+= '.cell-'+i+'{background: teal;}'-->
+<!--            }-->
+<!--        else {-->
+<!--            myHtml+= '.cell-'+i+'{background: magenta;}'-->
+<!--            }-->
+<!--        }-->
+<!--      myHtml+='</style>'-->
+<!--      wrapper.innerHTML = myHtml-->
+<!--</script>-->
+</html>
