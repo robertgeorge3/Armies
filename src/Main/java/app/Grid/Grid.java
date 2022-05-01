@@ -10,14 +10,10 @@ import org.springframework.ui.Model;
 @RequestMapping
 public class Grid {
 
-    @RequestMapping("/")
-    public String begin(){
-        return "Game.html";
-    }
 
     @PostMapping("setGrid")
     public String setNumGrid(String gridNum, Model model){
-        model.addAttribute("incorrectPassword", ".cell-"+gridNum+"{background:red;}");
+        model.addAttribute("incorrectPassword", ".cell-"+gridNum+"{background:black;}");
         return "Game.html";
 
     }

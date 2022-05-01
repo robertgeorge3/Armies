@@ -8,8 +8,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr  1fr 1fr  1fr 1fr  1fr 1fr  1fr 1fr  1fr 1fr  1fr 1fr  1fr 1fr  1fr 1fr  1fr 1fr ;
   color: grey;
-  align: center;
   font-size: 3rem;
+  font-color: brown;
 }
 .cell {
   height: 50px;
@@ -18,9 +18,60 @@
   border-width: 2px;
   border-color: gray;
   border-radius: 3px;
-  background: gainsboro;
+
+}
+.empty{
+background: gainsboro;
+}
+.castle {
+  background: purple;
 }
 
-.cell:hover {
-    background-color: rgba(255, 0, 0, 1);
+.wall{
+   background: brown;
+}
+
+.farm{
+    background: green;
+
+}
+
+.viewable{
+    background: beige;
+}
+
+.cell.viewable:hover {
+    background-color: rgba(0, 0, 0, 1);
+}
+.cell:active{
+    background: red;
+}
+
+.buildOps{
+    position: absolute;
+    right: 100px;
+    }
+
+.castleButton{
+
+    top: 50px;
+
+
+}
+.wallButton{
+
+    top:110px;
+}
+
+
+.farmButton{
+
+    top:170px;
+
+}
+
+.exploreButton{
+    left:200px
+    top:50px;
+
 }

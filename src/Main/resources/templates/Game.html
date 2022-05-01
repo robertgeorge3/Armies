@@ -4,54 +4,137 @@
     <link rel="stylesheet" href="grid.css">
     <meta char set="UTF-8">
 </head>
-<body>
-<h1></h1>
-</body>
-<div>
-    <form action="setGrid" method="POST">
-        <div class="form-group row">
-            <label for="gridNum" class="col-3 col-form-label">
-                Enter</label>
-            <div class="col-9">
-                <input type="text" name="gridNum"
-                       id="gridNum" class="form-control"/>
-            </div>
-            <style th:text =${incorrectPassword}>
-            </style>
-        </div>
-    </form>
-</div>
+
+
 <div id="container2">
 </div>
-<script>
-  var wrapper = document.getElementById("container2");
-  var myHTML = '<div class="container">';
-  for (var i = 0; i <260; i++) {
-    myHTML += '<button class="cell cell-'+(i+1)+'" type="button">'+' </button>';
-  }
-  myHTML += '</div>'
-  wrapper.innerHTML = myHTML
+
+
+<div id = "buildingOptions"></div>
+
+<div id = "buildingForm"></div>
+
+<div class="updateSquares">
+</div>
+
+
+
+<script th:inline="javascript">
+
+function createGrid(){
+    var wrapper = document.getElementById("container2");
+    var myHTML = '<div class="container">';
+
+    for (var i = 0; i < [[${numGrids}]]; i++) {
+        const typeCheck = [[${getTypes}]]
+        var above = typeCheck[i+20];
+        var left = typeCheck[i+1] ;
+        var below = typeCheck[i-20];
+        var bottomRight = typeCheck[i-21];
+        var bottomLeft = typeCheck[i-19];
+        var topRight = typeCheck[i+19];
+        var topLeft = typeCheck[i+21];
+
+        const sTypes = ["CASTLE","WALL","FARM","EXPLORE"]
+
+        if (type == "CASTLE"){
+            var home = i;
+            myHTML += '<button id = c'+i+' class="cell castle"  type="button">'+' </button>';
+        }
+        else if (type == "WALL"){
+            var home = i;
+            myHTML += '<button id = c'+i+' class="cell wall"  type="button">'+' </button>';
+        }
+        else if (type == "FARM"){
+            var home = i;
+            myHTML += '<button id = c'+i+' class="cell farm"  type="button">'+' </button>';
+        }
+        else if (type == "EXPLORE"){
+            var home = i;
+            myHTML += '<button id = c'+i+' class="cell viewable"  type="button" onclick = "build(this.id)">'+' </button>';
+        }
+        else if ( (sTypes.includes(above) )||(sTypes.includes(below)) || (((i+1)%20 != 0) && (sTypes.includes(left)  || sTypes.includes(bottomLeft) || sTypes.includes(topLeft) )) || ((i%20 != 0) && (i == home+1 || sTypes.includes(topRight) || sTypes.includes(bottomRight)))){
+        myHTML += '<button id = c'+i+' class="cell viewable" type="button" onclick = "build(this.id)">'+' </button>';
+        }
+        else if ( type == "EMPTY"){
+            myHTML += '<button id = c'+i+' class="cell empty" type="button">'+' </button>';
+        }
+
+
+    }
+    myHTML += '</div>'
+    wrapper.innerHTML = myHTML
+}
+
+function build(clickSquare){
+
+
+    var wrapper = document.getElementById("buildingOptions");
+    var myHTML = '<div class="buildOp" >';
+
+    myHTML += '<form action="update" method="POST">'
+
+    myHTML += ' <input type="hidden" name = "type" value="WALL">'
+    myHTML += ' <input type="hidden" name = "num" value=' + clickSquare + '>'
+    myHTML += '<button type = "submit" class = "cell buildOps wallButton" type = "button" id = "wall" >Wall</button>'
+    myHTML+= '</form>'
+
+    myHTML += '<form action="update" method="POST">'
+    myHTML += ' <input type="hidden" name = "num" value=' + clickSquare + '>'
+    myHTML += ' <input type="hidden" id="type" name = "type" value="CASTLE">'
+    myHTML += '<button type = "submit" class = "cell buildOps castleButton" id = '+clickSquare+' type = "button">Castle</button>'
+    myHTML+= '</form>'
+
+    myHTML += '<form action="update" method="POST">'
+    myHTML += ' <input type="hidden" name = "num" value=' + clickSquare + '>'
+    myHTML += ' <input type="hidden" id="type" name = "type" value="FARM">'
+    myHTML += '<button type = "submit" class = "cell buildOps farmButton" id = '+clickSquare+' type = "button">Farm</button>'
+    myHTML+= '</form>'
+
+    myHTML += '<form action="update" method="POST">'
+    myHTML += ' <input type="hidden" name = "num" value=' + clickSquare + '>'
+    myHTML += ' <input type="hidden" id="type" name = "type" value="EXPLORE">'
+    myHTML += '<button type = "submit" class = "cell buildOps exploreButton" id = '+clickSquare+' type = "button">Search</button>'
+    myHTML+= '</form>'
+
+    myHTML += '</div>'
+
+
+    myHTML += '<style>'
+    myHTML += '#'+clickSquare+'{ border-color:red }'
+    myHTML += '</style>'
+
+    wrapper.innerHTML = myHTML
+}
+
+function buildWall(clickSquare){
+
+    var wrapper = document.getElementById("wallBuild");
+     myHTML += '<style>'
+     myHTML += '#'+clickSquare+'{ border-color:orange}'
+     myHTML += '</style>'
+
+
+    wrapper.innerHTML = myHTML
+
+
+}
+
+
+
+createGrid()
+
+<!--  var wrapper = document.getElementById("container2");-->
+<!--  var myHTML = '<div class="container">';-->
+<!--  for (var i = 0; i <260; i++) {-->
+<!--    myHTML += '<button class="cell '+i+'" type="button">'' </button>';-->
+<!--  }-->
+<!--  myHTML += '</div>'-->
+<!--  wrapper.innerHTML = myHTML-->
 </script>
 
-<!--<div id="gridColors">-->
-<!--    <style>-->
-<!--    .cell-10{-->
-<!--    background: green;-->
-<!--    }-->
-<!--</style>-->
 
-<!--<script>-->
-<!--      var wrapper = document.getElementById("gridColors");-->
-<!--      var myHtml = '<style>'-->
-<!--      for (var i = 1; i < 21; i++) {-->
-<!--      if (i%2 != 0){-->
-<!--            myHtml+= '.cell-'+i+'{background: teal;}'-->
-<!--            }-->
-<!--        else {-->
-<!--            myHtml+= '.cell-'+i+'{background: magenta;}'-->
-<!--            }-->
-<!--        }-->
-<!--      myHtml+='</style>'-->
-<!--      wrapper.innerHTML = myHtml-->
-<!--</script>-->
+
+
+
 </html>
