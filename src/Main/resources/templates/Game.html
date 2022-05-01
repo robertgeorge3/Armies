@@ -26,7 +26,8 @@ function createGrid(){
     var myHTML = '<div class="container">';
 
     for (var i = 0; i < [[${numGrids}]]; i++) {
-        const typeCheck = [[${getTypes}]]
+        const typeCheck = [[${getTypes}]];
+        var type = [[${getTypes}]][i];
         var above = typeCheck[i+20];
         var left = typeCheck[i+1] ;
         var below = typeCheck[i-20];

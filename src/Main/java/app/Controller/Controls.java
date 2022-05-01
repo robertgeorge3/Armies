@@ -39,6 +39,7 @@ public class Controls {
             squares.add(s);
             types[i] = e.getName();
 
+
         }
     }
 
@@ -81,8 +82,10 @@ public class Controls {
         for (int i = 0; i < arr.length; i ++){
             if (i != 0){
                 num += arr[i];
+
             }
-        }
+
+            }
 
 
         return Integer.parseInt(num);
